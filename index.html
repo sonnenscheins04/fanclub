@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07172d">
+  <meta name="description" content="Immerblau Haverkamp – unser Schalke-04-Fanclub. Termine, Auswärtsfahrten, Neuigkeiten und Mitgliedschaft.">
+  <title>Immerblau Haverkamp | Schalke 04</title>
+
+  <style>
+    :root {
+      --blue: #0878d1;
+      --dark: #07172d;
+      --light: #f2f6fb;
+      --white: #fff;
+      --muted: #63738a;
+      --border: #dce5ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--dark);
+      color: white;
+      border-bottom: 1px solid #263a55;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: 1px;
+    }
+
+    .crest {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      background: var(--blue);
+      border-radius: 50%;
+      font-size: 22px;
+    }
+
+    .brand small {
+      display: block;
+      color: #a8c8e8;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    nav a {
+      color: #e2edf8;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover { color: #71bcff; }
+
+    .nav-toggle {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid #58718e;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .hero {
+      color: white;
+      background:
+        radial-gradient(ellipse at 80% 10%, #1768a7 0, transparent 42%),
+        linear-gradient(130deg, #07172d, #103f70 70%, #07172d);
+      padding: 90px 0 84px;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      color: #8bcaff;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      max-width: 720px;
+      font-size: clamp(38px, 7vw, 70px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin: 16px 0;
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: #d4e4f5;
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 18px;
+      text-decoration: none;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .btn-outline {
+      border: 1px solid #91b2d4;
+      color: white;
+    }
+
+    section { padding: 64px 0; }
+
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 6px;
+      font-size: clamp(27px, 4vw, 38px);
+      line-height: 1.2;
+    }
+
+    .section-heading p { color: var(--muted); margin: 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 23px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: 0 5px 20px #07172d08;
+    }
+
+    .card h3 { margin: 8px 0; }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .symbol { font-size: 28px; }
+
+    .tag {
+      display: inline-block;
+      color: #075fa9;
+      background: #e4f2ff;
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .blue-section {
+      color: white;
+      background: var(--dark);
+    }
+
+    .blue-section .section-heading p { color: #b9cde1; }
+    .blue-section .card { color: var(--dark); }
+
+    .gallery-tile {
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 800;
+      background:
+        linear-gradient(0deg, #061326e8, transparent),
+        linear-gradient(135deg, #07549b, #49a6e8);
+    }
+
+    .gallery-tile:nth-child(2) {
+      background: linear-gradient(135deg, #0c294a, #1178c4);
+    }
+
+    .gallery-tile:nth-child(3) {
+      background: linear-gradient(135deg, #1264a6, #9bcff6);
+      color: #07172d;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    form { display: grid; gap: 13px; }
+
+    label { font-weight: 700; font-size: 14px; }
+
+    input, textarea {
+      display: block;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #cbd7e4;
+      border-radius: 8px;
+      padding: 11px;
+      background: white;
+      color: var(--dark);
+    }
+
+    textarea { min-height: 110px; resize: vertical; }
+
+    .hint { font-size: 13px; color: var(--muted); }
+
+    footer {
+      background: #04101f;
+      color: #d5e2f0;
+      padding: 28px 0;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    footer a { color: #9acfff; }
+
+    dialog {
+      width: min(420px, 92%);
+      border: 0;
+      border-radius: 16px;
+      padding: 26px;
+      color: var(--dark);
+    }
+
+    dialog::backdrop { background: #020b18bb; }
+    dialog h2 { margin-top: 0; }
+    .close { float: right; }
+
+    @media (max-width: 800px) {
+      .nav { flex-wrap: wrap; padding: 12px 0; }
+      .nav-toggle { display: block; }
+
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-bottom: 8px;
+      }
+
+      nav.open { display: flex; }
+
+      nav a { padding: 10px 0; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .hero { padding: 65px 0; }
+    }
+
+    @media (max-width: 520px) {
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 46px 0; }
+      .hero p { font-size: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#start">
+      <span class="crest" aria-hidden="true">04</span>
+      <span>IMMERBLAU
+        <small>HAVERKAMP · SCHALKE 04</small>
+      </span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle"
+            aria-expanded="false" aria-controls="nav">
+      Menü ☰
+    </button>
+
+    <nav id="nav" aria-label="Hauptnavigation">
+      <a href="#termine">Termine</a>
+      <a href="#news">Neuigkeiten</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#mitglied">Mitglied werden</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#" id="openLogin">Mitglieder-Login</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="start">
+    <div class="container">
+      <div class="eyebrow">Einmal Schalker. Immer Schalker.</div>
+      <h1>Gemeinsam blau.<br>Gemeinsam stark.</h1>
+      <p>
+        Willkommen bei Immerblau Haverkamp!
+        Wir stehen für königsblaue Leidenschaft,
+        Zusammenhalt und gemeinsame Erlebnisse rund um Schalke 04.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#termine">Unsere Termine</a>
+        <a class="btn btn-outline" href="#mitglied">Teil unserer Familie werden</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="termine">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Termine & Auswärtsfahrten</h2>
+        <p>Die nächsten gemeinsamen königsblauen Momente.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Termin ergänzen</span>
+          <div class="symbol">🏟️</div>
+          <h3>Nächstes Heimspiel</h3>
+          <p>Datum, Gegner und Treffpunkt werden hier bekannt gegeben.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Termin ergänzen</span>
+          <div class="symbol">🚌</div>
+          <h3>Auswärtsfahrt</h3>
+          <p>Abfahrtszeit, Zustieg und Anmeldung bitte hier eintragen.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Fanclub</span>
+          <div class="symbol">🍻</div>
+          <h3>Fanclub-Treffen</h3>
+          <p>Wir treffen uns gemeinsam zum Fachsimpeln und Mitfiebern.</p>
+        </article>
+      </div>
+      <p class="hint">Hinweis: Dies sind Platzhalter, keine bestätigten Termine.</p>
+    </div>
+  </section>
+
+  <section class="blue-section" id="news">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Neuigkeiten</h2>
+        <p>Was bei Immerblau Haverkamp los ist.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Fanclub</span>
+          <h3>Willkommen auf unserer Webseite!</h3>
+          <p>Hier findet ihr künftig aktuelle Informationen,
+             Termine und Neuigkeiten rund um unseren Fanclub.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Gemeinschaft</span>
+          <h3>Gemeinsam für Königsblau</h3>
+          <p>Ihr habt Neuigkeiten oder Ideen für den Fanclub?
+             Meldet euch bei uns.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Auswärts</span>
+          <h3>Unterwegs mit Schalke</h3>
+          <p>Informationen zu geplanten Fahrten werden hier
+             nach Bestätigung veröffentlicht.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Unsere Galerie</h2>
+        <p>Platz für eure eigenen Fotos, Fahrten und Fanclub-Momente.</p>
+      </div>
+      <div class="grid">
+        <div class="gallery-tile">📸<br>Stadionmomente</div>
+        <div class="gallery-tile">🚌<br>Auswärts unterwegs</div>
+        <div class="gallery-tile">💙<br>Unser Fanclub</div>
+      </div>
+      <p class="hint">Die farbigen Kacheln sind Platzhalter. Eigene Fotos können später ergänzt werden.</p>
+    </div>
+  </section>
+
+  <section id="mitglied" class="blue-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Werde Teil unserer Gemeinschaft</h2>
+        <p>Du hast königsblaues Herzblut? Dann lerne Immerblau Haverkamp kennen.</p>
+      </div>
+      <div class="card">
+        <h3>Gemeinsam mehr erleben</h3>
+        <p>Ob Heimspiel, Auswärtsfahrt oder geselliges Treffen:
+           Bei uns steht die Gemeinschaft im Mittelpunkt.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#kontakt">Interesse anmelden</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Kontakt</h2>
+        <p>Fragen, Interesse an einer Mitgliedschaft oder Ideen für den Fanclub?</p>
+      </div>
+      <div class="contact-layout">
+        <div class="card">
+          <h3>Schreib uns</h3>
+          <p>Wir freuen uns über Nachrichten von Schalkerinnen,
+             Schalkern und allen, die unseren Fanclub kennenlernen möchten.</p>
+          <p><strong>E-Mail:</strong><br>
+            <span id="emailDisplay">Bitte Fanclub-E-Mail-Adresse eintragen</span>
+          </p>
+          <p class="hint">Ersetzt den Platzhalter im HTML durch eure offizielle Kontaktadresse.</p>
+        </div>
+
+        <div class="card">
+          <h3>Nachricht vorbereiten</h3>
+          <form id="contactForm">
+            <label>
+              Dein Name
+              <input name="name" required autocomplete="name">
+            </label>
+            <label>
+              Deine E-Mail
+              <input name="email" type="email" required autocomplete="email">
+            </label>
+            <label>
+              Deine Nachricht
+              <textarea name="message" required></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">
+              E-Mail vorbereiten
+            </button>
+            <p class="hint">
+              Öffnet dein E-Mail-Programm. Es werden keine Daten
+              auf dieser Webseite gespeichert oder automatisch versendet.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>Immerblau Haverkamp</strong><br>
+      Mit Leidenschaft für Schalke 04
+    </div>
+    <div>
+      <a href="#kontakt">Kontakt</a> ·
+      <a href="#" id="footerLogin">Mitglieder-Login</a>
+    </div>
+    <div>© <span id="year"></span> Immerblau Haverkamp</div>
+  </div>
+  <div class="container hint" style="margin-top:16px;color:#b9cde1">
+    Fanclub-Webseite. Keine offizielle Webseite des FC Schalke 04.
+  </div>
+</footer>
+
+<dialog id="loginDialog">
+  <button class="close" id="closeLogin" aria-label="Schließen">✕</button>
+  <h2>Mitgliederbereich</h2>
+  <p>Der geschützte Mitgliederbereich ist noch nicht eingerichtet.</p>
+  <p class="hint">
+    Für eine sichere Anmeldung werden ein Authentifizierungsdienst
+    und Regeln für geschützte Inhalte benötigt.
+  </p>
+  <button class="btn btn-primary" id="dismissLogin">Schließen</button>
+</dialog>
+
+<script>
+  const nav = document.getElementById("nav");
+  const navToggle = document.getElementById("navToggle");
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  const loginDialog = document.getElementById("loginDialog");
+
+  function showLogin(event) {
+    event.preventDefault();
+    loginDialog.showModal();
+  }
+
+  document.getElementById("openLogin").addEventListener("click", showLogin);
+  document.getElementById("footerLogin").addEventListener("click", showLogin);
+  document.getElementById("closeLogin").addEventListener("click", () => loginDialog.close());
+  document.getElementById("dismissLogin").addEventListener("click", () => loginDialog.close());
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  document.getElementById("contactForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    // HIER eure echte Fanclub-E-Mail-Adresse eintragen:
+    const recipient = "EURE-EMAIL-ADRESSE-HIER-EINTRAGEN";
+
+    if (recipient.includes("HIER-EINTRAGEN")) {
+      alert("Bitte tragt zuerst eure Fanclub-E-Mail-Adresse im HTML ein.");
+      return;
+    }
+
+    const data = new FormData(event.currentTarget);
+    const subject = encodeURIComponent("Anfrage an Immerblau Haverkamp");
+    const body = encodeURIComponent(
+      "Name: " + data.get("name") +
+      "\nE-Mail: " + data.get("email") +
+      "\n\nNachricht:\n" + data.get("message")
+    );
+
+    window.location.href =
+      "mailto:" + recipient + "?subject=" + subject + "&body=" + body;
+  });
+</script>
+</body>
+</html>
